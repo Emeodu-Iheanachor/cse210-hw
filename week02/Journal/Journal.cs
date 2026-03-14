@@ -21,22 +21,20 @@ public class Journal
 
     public void SaveToFile(string file)
     {
-        using (StreamWriter output = new StreamWriter(file))
+        using (StreamWriter outputFile = new StreamWriter(file))
         {
             foreach (Entry entry in _entries)
             {
-                output.WriteLine($"{entry._date}|{entry._promptText}|{entry._entryText}");
+                outputFile.WriteLine($"{entry._date}|{entry._promptText}|{entry._entryText}");
             }
         }
-
-        Console.WriteLine("Journal saved successfully.");
     }
 
     public void LoadFromFile(string file)
     {
-        string[] lines = File.ReadAllLines(file);
-
         _entries.Clear();
+
+        string[] lines = File.ReadAllLines(file);
 
         foreach (string line in lines)
         {
@@ -49,7 +47,5 @@ public class Journal
 
             _entries.Add(entry);
         }
-
-        Console.WriteLine("Journal loaded successfully.");
     }
 }
