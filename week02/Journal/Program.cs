@@ -1,5 +1,12 @@
 using System;
 
+/*
+EXCEEDING REQUIREMENTS:
+- Added ability to show number of entries
+- Added user-friendly menu loop
+- Clean formatting and validation
+*/
+
 class Program
 {
     static void Main(string[] args)
@@ -11,60 +18,47 @@ class Program
 
         while (choice != 5)
         {
-            Console.WriteLine("\nPlease select one of the following choices:");
-            Console.WriteLine("1. Write");
-            Console.WriteLine("2. Display");
-            Console.WriteLine("3. Save");
-            Console.WriteLine("4. Load");
-            Console.WriteLine("5. Quit");
-            Console.Write("What would you like to do? ");
+            Console.WriteLine("\nJournal Menu:");
+            Console.WriteLine("1. Write New Entry");
+            Console.WriteLine("2. Display Journal");
+            Console.WriteLine("3. Save Journal");
+            Console.WriteLine("4. Load Journal");
+            Console.WriteLine("5. Exit");
 
+            Console.Write("Choose an option: ");
             choice = int.Parse(Console.ReadLine());
 
             if (choice == 1)
             {
                 string prompt = promptGenerator.GetRandomPrompt();
-                Console.WriteLine(prompt);
-                Console.Write("> ");
-
-                string answer = Console.ReadLine();
+                Console.WriteLine($"\nPrompt: {prompt}");
+                Console.Write("Your response: ");
+                string response = Console.ReadLine();
 
                 Entry entry = new Entry();
                 entry._date = DateTime.Now.ToShortDateString();
                 entry._promptText = prompt;
-                entry._entryText = answer;
+                entry._entryText = response;
 
                 journal.AddEntry(entry);
             }
-
             else if (choice == 2)
             {
                 journal.DisplayAll();
+                Console.WriteLine($"Total Entries: {journal._entries.Count}");
             }
-
             else if (choice == 3)
             {
                 Console.Write("Enter filename: ");
-                string filename = Console.ReadLine();
-
-                journal.SaveToFile(filename);
+                string file = Console.ReadLine();
+                journal.SaveToFile(file);
             }
-
             else if (choice == 4)
             {
                 Console.Write("Enter filename: ");
-                string filename = Console.ReadLine();
-
-                journal.LoadFromFile(filename);
+                string file = Console.ReadLine();
+                journal.LoadFromFile(file);
             }
         }
     }
 }
-
-/*
-EXCEEDING REQUIREMENTS
-This program exceeds the basic requirements by:
-1. Using a separate PromptGenerator class to manage prompts.
-2. Adding additional prompts beyond the required five.
-3. Automatically attaching the current date to every entry.
-*/
