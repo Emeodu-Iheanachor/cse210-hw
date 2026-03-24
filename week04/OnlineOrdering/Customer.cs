@@ -1,3 +1,5 @@
+using System;
+
 public class Customer
 {
     private string _name;
@@ -9,13 +11,18 @@ public class Customer
         _address = address;
     }
 
+    public string GetName()
+    {
+        return _name;
+    }
+
     public bool LivesInUSA()
     {
         return _address.IsInUSA();
     }
 
-    public string GetShippingInfo()
+    public string GetAddress()
     {
-        return $"{_name}\n{_address.GetFullAddress()}";
+        return _address.GetFullAddress();
     }
 }

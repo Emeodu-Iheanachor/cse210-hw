@@ -1,3 +1,5 @@
+using System;
+
 public class Product
 {
     private string _name;
@@ -18,8 +20,13 @@ public class Product
         return _price * _quantity;
     }
 
-    public string GetPackingInfo()
+    public string GetName()
     {
-        return $"{_name} (ID: {_productId})";
+        return _name;
+    }
+
+    public string GetProductId()
+    {
+        return _productId;
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 public class Order
@@ -15,7 +16,7 @@ public class Order
         _products.Add(product);
     }
 
-    public double GetTotalCost()
+    public double CalculateTotalCost()
     {
         double total = 0;
 
@@ -43,7 +44,7 @@ public class Order
 
         foreach (Product product in _products)
         {
-            label += product.GetPackingInfo() + "\n";
+            label += $"{product.GetName()} (ID: {product.GetProductId()})\n";
         }
 
         return label;
@@ -51,6 +52,6 @@ public class Order
 
     public string GetShippingLabel()
     {
-        return "Shipping Label:\n" + _customer.GetShippingInfo();
+        return $"Shipping Label:\n{_customer.GetName()}\n{_customer.GetAddress()}";
     }
 }
