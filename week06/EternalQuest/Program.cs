@@ -1,9 +1,12 @@
-using System;
-
 class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello World! This is the EternalQuest Project.");
+        GoalManager manager = new GoalManager();
+        manager.ShowMenu();
+
+        // Extra creativity:
+        // You can add fun gamification like badges, levels, or funny titles here.
+        // Example: "Level 5 Ninja Unicorn" when score reaches a threshold.
     }
 }
